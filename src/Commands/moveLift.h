@@ -5,21 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#pragma once
+
+#include <Commands/Command.h>
+#include "../Robot.h"
 #include "OI.h"
-#include "Commands/TankDrive.h"
-#include "WPILib.h"
+#include "Subsystems/DriveTrain.h"
 
 
-OI::OI() : driveStickLeft(new Joystick(joystickleftPort)), driveStickRight(new Joystick(joystickrightPort)), liftStick(new Joystick(joystickliftPort)) {
+class moveLift : public frc::Command {
+public:
+	moveLift();
+	~moveLift();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
+};
 
-	// Process operator interface input here.
-}
-Joystick* OI::getDriveStickLeft() {
-	return driveStickLeft;
-}
-Joystick*OI::getDriveStickRight() {
-	return driveStickRight;
-}
-Joystick*OI::getLiftStick() {
-	return liftStick;
-}

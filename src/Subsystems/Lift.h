@@ -5,21 +5,22 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "OI.h"
-#include "Commands/TankDrive.h"
+#pragma once
+
 #include "WPILib.h"
+#include "ctre/Phoenix.h"
+#include "RobotMap.h"
 
+class Lift : public frc::Subsystem {
+private:
+	TalonSRX*lift;
+	// It's desirable that everything possible under private except
+	// for methods that implement subsystem capabilities
 
-OI::OI() : driveStickLeft(new Joystick(joystickleftPort)), driveStickRight(new Joystick(joystickrightPort)), liftStick(new Joystick(joystickliftPort)) {
+public:
+	Lift();
+	~Lift();
+	void InitDefaultCommand() override;
+	void moveLift(double power);
+};
 
-	// Process operator interface input here.
-}
-Joystick* OI::getDriveStickLeft() {
-	return driveStickLeft;
-}
-Joystick*OI::getDriveStickRight() {
-	return driveStickRight;
-}
-Joystick*OI::getLiftStick() {
-	return liftStick;
-}

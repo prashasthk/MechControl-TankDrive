@@ -23,7 +23,10 @@
 // number and the module. For example you with a rangefinder:
 // constexpr int kRangeFinderPort = 1;
 // constexpr int kRangeFinderModule = 1;
-constexpr int joystickleftPort;
-constexpr int joystickrightPort;
-constexpr int LEFTMOTOR;
-constexpr int RIGHTMOTOR;
+constexpr int joystickleftPort = 0;
+constexpr int joystickrightPort = 0;
+constexpr int LEFTMOTOR = 0;
+constexpr int RIGHTMOTOR = 0;
+constexpr int joystickliftPort = 0;
+constexpr int liftPort = 0;
+

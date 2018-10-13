@@ -5,21 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "OI.h"
-#include "Commands/TankDrive.h"
-#include "WPILib.h"
+#include "Lift.h"
+#include "../RobotMap.h"
+#include "Commands/moveLift.h"
 
 
-OI::OI() : driveStickLeft(new Joystick(joystickleftPort)), driveStickRight(new Joystick(joystickrightPort)), liftStick(new Joystick(joystickliftPort)) {
 
-	// Process operator interface input here.
+Lift::Lift() : Subsystem("Lift"), lift(new TalonSRX(liftPort)) {
+
 }
-Joystick* OI::getDriveStickLeft() {
-	return driveStickLeft;
+
+void Lift::InitDefaultCommand() {
+	SetDefaultCommand(new moveLift());
+	// Set the default command for a subsystem here.
+	// SetDefaultCommand(new MySpecialCommand());
 }
-Joystick*OI::getDriveStickRight() {
-	return driveStickRight;
+void Lift::moveLift(double power) {
+	lift->Set(ControlMode::Output, power);
 }
-Joystick*OI::getLiftStick() {
-	return liftStick;
-}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.

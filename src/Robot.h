@@ -19,7 +19,7 @@
 class Robot : public frc::TimedRobot {
 public:
 	static OI* m_oi;
-	static DriveTrain*drive;
+	static DriveTrain* drive;
 	void RobotInit() override;
 	void DisabledInit() override;
 	void DisabledPeriodic() override;

@@ -6,7 +6,8 @@
 /*----------------------------------------------------------------------------*/
 
 #include "DriveTrain.h"
-
+#include "Commands/TankDrive.h"
+#include "ctre/Phoenix.h"
 
 DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)), right(new TalonSRX(RIGHTMOTOR)) {
 
@@ -22,6 +23,6 @@ void DriveTrain::InitDefaultCommand() {
 
 void DriveTrain::tankDrive(double leftValue, double rightValue) {
 left->Set(ControlMode::PercentOutput, leftValue);
-right->Set(ControlMode::PercentOutput, rightValue)
+right->Set(ControlMode::PercentOutput, rightValue);
 
 }
