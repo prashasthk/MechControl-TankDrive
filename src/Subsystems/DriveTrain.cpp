@@ -26,3 +26,9 @@ left->Set(ControlMode::PercentOutput, leftValue);
 right->Set(ControlMode::PercentOutput, rightValue);
 
 }
+void DriveTrain::leftDrive(double leftMotorVal) {
+left->Set(ControlMode::PercentOutput, leftMotorVal);
+}
+void DriveTrain::rightDrive(double rightMotorVal) {
+right->Set(ControlMode::PercentOutput, rightMotorVal);
+}

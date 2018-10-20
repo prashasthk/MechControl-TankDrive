@@ -10,11 +10,15 @@
 #include <Commands/Scheduler.h>
 #include <SmartDashboard/SmartDashboard.h>
 
+OI* Robot::m_oi;
+DriveTrain* Robot::drive;
+Lift* Robot::lift;
 
 void Robot::RobotInit() {
 
 	drive = new DriveTrain();
 	m_oi = new OI();
+	lift= new Lift();
 	//m_chooser.AddDefault("Default Auto", &m_defaultAuto);
 	//m_chooser.AddObject("My Auto", &m_myAuto);
 	frc::SmartDashboard::PutData("Auto Modes", &m_chooser);

@@ -5,23 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include <Commands/MoveLift.h>
 #include "Lift.h"
 #include "../RobotMap.h"
-#include "Commands/moveLift.h"
-
 
 
 Lift::Lift() : Subsystem("Lift"), lift(new TalonSRX(liftPort)) {
 
 }
 
-void Lift::InitDefaultCommand() {
-	SetDefaultCommand(new moveLift());
+void Lift::InitDefaultCommand()
+{
+	SetDefaultCommand(new MoveLift());
 	// Set the default command for a subsystem here.
 	// SetDefaultCommand(new MySpecialCommand());
 }
-void Lift::moveLift(double power) {
-	lift->Set(ControlMode::Output, power);
+void Lift::liftMove(double power) {
+	lift->Set(ControlMode::PercentOutput, power);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

@@ -7,16 +7,15 @@
 
 #pragma once
 
-#include <Commands/Command.h>
 #include "../Robot.h"
 #include "OI.h"
-#include "Subsystems/DriveTrain.h"
+#include "Subsystems/Lift.h"
 
 
-class moveLift : public frc::Command {
+class MoveLift : public frc::Command {
 public:
-	moveLift();
-	~moveLift();
+	MoveLift();
+	~MoveLift();
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

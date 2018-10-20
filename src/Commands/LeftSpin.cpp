@@ -5,39 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/MoveLift.h>
+#include "LeftSpin.h"
 
-MoveLift::MoveLift() {
-	Requires(Robot::lift);
-
+LeftSpin::LeftSpin(double leftVal){
+	power = leftVal;
+	Requires(Robot::drive);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 }
 
 // Called just before this Command runs the first time
-void MoveLift::Initialize() {
-
+void LeftSpin::Initialize() {
+	SetTimeout(5);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveLift::Execute() {
-double motorPower = Robot::m_oi->getLiftStick()->GetY();
-Robot::lift->liftMove(motorPower);
-
+void LeftSpin::Execute() {
+	Robot::drive->leftDrive(power);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool MoveLift::IsFinished() {
-	return false;
+bool LeftSpin::IsFinished() {
+	return IsTimedOut();
 }
 
 // Called once after isFinished returns true
-void MoveLift::End() {
-
+void LeftSpin::End() {
+	Robot::drive->leftDrive(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveLift::Interrupted() {
+void LeftSpin::Interrupted() {
 
 }

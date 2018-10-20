@@ -21,6 +21,6 @@ public:
 	Lift();
 	~Lift();
 	void InitDefaultCommand() override;
-	void moveLift(double power);
+	void liftMove(double power);
 };
 

@@ -7,24 +7,10 @@
 
 #pragma once
 
+#include <Commands/CommandGroup.h>
 
-#include "WPILib.h"
-#include "ctre/Phoenix.h"
-#include "../RobotMap.h"
-
-class DriveTrain : public frc::Subsystem {
-private:
-	TalonSRX*left;
-	TalonSRX*right;
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-
+class GroupedDriving : public frc::CommandGroup {
 public:
-	DriveTrain();
-	~DriveTrain();
-	void InitDefaultCommand() override;
-	void tankDrive(double leftValue, double rightValue);
-	void leftDrive(double leftMotorVal);
-	void rightDrive(double rightMotorVal);
+	GroupedDriving(double leftVal, double rightVal);
 };
 

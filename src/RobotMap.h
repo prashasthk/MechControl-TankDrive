@@ -29,4 +29,5 @@ constexpr int LEFTMOTOR = 0;
 constexpr int RIGHTMOTOR = 0;
 constexpr int joystickliftPort = 0;
 constexpr int liftPort = 0;
+constexpr int LEFT_BUTTON_PORT = 0;
 
