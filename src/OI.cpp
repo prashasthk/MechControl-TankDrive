@@ -13,9 +13,9 @@
 OI::OI() : driveStickLeft(new Joystick(joystickleftPort)),
 driveStickRight(new Joystick(joystickrightPort)),
 liftStick(new Joystick(joystickliftPort)),
-groupedDriveButton(new JoystickButton(driveStickLeft, LEFTJOYSTICK_BUTTON_PORT))
+groupedDriveButton(new JoystickButton(driveStickLeft, LEFT_BUTTON_PORT))
 {
-	groupedDriveButton->WhenPressed(new GroupedDriving(0.2, 0.2));
+	groupedDriveButton->WhenPressed(new GroupedDriving(0.5, 0.5));
 }
 Joystick* OI::getDriveStickLeft() {
 	return driveStickLeft;

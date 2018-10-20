@@ -25,8 +25,3 @@ void Lift::liftMove(double power) {
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-Lift::~Lift() {
-	if (lift != nullptr) {
-		delete lift;
-	}
-}
