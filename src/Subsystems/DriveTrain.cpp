@@ -9,8 +9,8 @@
 #include "Commands/TankDrive.h"
 #include "ctre/Phoenix.h"
 
-DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFTMOTOR)), right(new TalonSRX(RIGHTMOTOR)) {
-
+DriveTrain::DriveTrain() : Subsystem("DriveTrain"), left(new TalonSRX(LEFT_MOTOR_PORT)), right(new TalonSRX(RIGHT_MOTOR_PORT)) {
+	right->SetInverted(true);
 }
 void DriveTrain::InitDefaultCommand() {
 	SetDefaultCommand(new TankDrive());
@@ -31,4 +31,12 @@ left->Set(ControlMode::PercentOutput, leftMotorVal);
 }
 void DriveTrain::rightDrive(double rightMotorVal) {
 right->Set(ControlMode::PercentOutput, rightMotorVal);
+}
+DriveTrain::~DriveTrain() {
+if (left != nullptr) {
+	delete left;
+}
+if (right != nullptr) {
+	delete right;
+}
 }
