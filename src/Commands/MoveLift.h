@@ -15,7 +15,6 @@
 class MoveLift : public frc::Command {
 public:
 	MoveLift();
-	~MoveLift();
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

@@ -10,7 +10,8 @@
 #include "../RobotMap.h"
 
 
-Lift::Lift() : Subsystem("Lift"), lift(new TalonSRX(liftPort)) {
+Lift::Lift() : Subsystem("Lift"), lift(new TalonSRX(liftPort)), circumference(0) {
+	lift->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative,0,10);
 
 }
 
@@ -25,3 +26,22 @@ void Lift::liftMove(double power) {
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+double Lift::getHeight() {
+	double relativePosition = lift->GetSensorCollection().GetQuadraturePosition();
+	relativePosition = ((relativePosition)/4096) * circumference;
+	return relativePosition;
+}
+double Lift::getPosition() {
+	return lift->GetSelectedSensorPosition(0);
+}
+void Lift::resetEncoder() {
+	lift->SetSelectedSensorPosition(0,0,10);
+}
+TalonSRX * Lift::getLiftMotor() {
+	return lift;
+}
+Lift::~Lift() {
+	if (lift != nullptr) {
+		delete lift;
+	}
+}

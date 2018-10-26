@@ -32,3 +32,11 @@ left->Set(ControlMode::PercentOutput, leftMotorVal);
 void DriveTrain::rightDrive(double rightMotorVal) {
 right->Set(ControlMode::PercentOutput, rightMotorVal);
 }
+DriveTrain::~DriveTrain() {
+	if (left != nullptr) {
+		delete left;
+	}
+	if (right != nullptr) {
+		delete right;
+	}
+}

@@ -6,25 +6,17 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
+#include "../Robot.h"
+#include "OI.h"
+#include "Subsystems/Lift.h"
 
-#include "WPILib.h"
-#include "ctre/Phoenix.h"
-#include "RobotMap.h"
-
-class Lift : public frc::Subsystem {
-private:
-	TalonSRX*lift;
-	double circumference;
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+class ResetLift : public frc::Command {
 public:
-	Lift();
-	~Lift();
-	TalonSRX * getLiftMotor();
-	void InitDefaultCommand() override;
-	void liftMove(double power);
-	double getHeight();
-	double getPosition();
-	void resetEncoder();
+	ResetLift();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
 
