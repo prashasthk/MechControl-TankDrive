@@ -23,12 +23,14 @@ void MoveLift::Initialize() {
 void MoveLift::Execute() {
 double liftValue = Robot::m_oi->getLiftStick()->GetY();
 Robot::lift->liftMove(liftValue);
-std::cout << Robot::lift->getHeight() << std::endl;
+//std::cout << Robot::lift->getHeight() << ", " << liftValue << std::endl;
+
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool MoveLift::IsFinished() {
 	return false;
+
 
 }
 

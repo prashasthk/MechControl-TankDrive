@@ -16,6 +16,7 @@ private:
 	Joystick*liftStick;
 	Button* groupedDriveButton;
 	Button*resetLiftButton;
+	Button*autoLiftButton;
 public:
 	OI();
 	~OI();

@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
+#include <iostream>
 #include "ResetLift.h"
 
 ResetLift::ResetLift() {
@@ -15,7 +15,7 @@ ResetLift::ResetLift() {
 
 // Called just before this Command runs the first time
 void ResetLift::Initialize() {
-
+std::cout << "Reset Life has started" << std::endl;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -25,11 +25,11 @@ void ResetLift::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool ResetLift::IsFinished() {
-	if (Robot::lift->getLiftMotor()->GetSensorCollection().IsFwdLimitSwitchClosed()) {
+	if (Robot::lift->getLiftMotor()->GetSensorCollection().IsRevLimitSwitchClosed()) {
+		std::cout << "ResetLift has finished" << std::endl;
 		return true;
 	}
-	else
-		return false;
+	return false;
 }
 
 // Called once after isFinished returns true

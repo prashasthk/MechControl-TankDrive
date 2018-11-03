@@ -14,16 +14,16 @@
 
 class AutoMoveLift : public frc::Command {
 private:
-double setpoint;
-double liftKp = 0.3;
+double target;
+double liftKp = 0.1;
 double liftKi = 0;
 double liftKd = 0;
-double power;
+double power = 0;
 
 WVPIDController * liftPID;
 
 public:
-	AutoMoveLift();
+	AutoMoveLift(double setpoint);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

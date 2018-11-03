@@ -7,9 +7,10 @@
 
 #include "AutoMoveLift.h"
 
-AutoMoveLift::AutoMoveLift() :
-liftPID(new WVPIDController(liftKp, liftKi, liftKd, setpoint, false)){
+AutoMoveLift::AutoMoveLift(double setpoint) :
+liftPID(new WVPIDController(liftKp, liftKi, liftKd, target, false)){
 	Requires(Robot::lift);
+	target = setpoint;
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 }
@@ -17,6 +18,7 @@ liftPID(new WVPIDController(liftKp, liftKi, liftKd, setpoint, false)){
 // Called just before this Command runs the first time
 void AutoMoveLift::Initialize() {
 Robot::lift->resetEncoder();
+liftPID->SetSetPoint(target);
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -28,11 +30,13 @@ Robot::lift->liftMove(0.15 + power);
 // Make this return true when this Command no longer needs to run execute()
 bool AutoMoveLift::IsFinished() {
 	if (fabs(liftPID->GetError()) < 0.05) {
-			return true;
-		}
-		else if (Robot::lift->getLiftMotor()->GetSensorCollection().IsFwdLimitSwitchClosed()) {
-			return true;
-		}
+		return true;
+	}
+	else if (Robot::lift->getLiftMotor()->GetSensorCollection().IsRevLimitSwitchClosed()) {
+		return true;
+	}
+	else
+		return false;
 
 }
 

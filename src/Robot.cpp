@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "Robot.h"
-
+#include <iostream>
 #include <Commands/Scheduler.h>
 #include <SmartDashboard/SmartDashboard.h>
 
@@ -17,11 +17,14 @@ Lift* Robot::lift;
 void Robot::RobotInit() {
 
 	drive = new DriveTrain();
-	m_oi = new OI();
 	lift= new Lift();
+	m_oi = new OI();
+
+
 	//m_chooser.AddDefault("Default Auto", &m_defaultAuto);
 	//m_chooser.AddObject("My Auto", &m_myAuto);
 	frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+
 }
 
 /**
@@ -36,6 +39,7 @@ void Robot::DisabledInit()
 
 void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
+
 }
 
 /**
@@ -82,8 +86,12 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
+
+
 }
 
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() {
+	std::cout << lift->getLiftMotor()->GetSensorCollection().IsRevLimitSwitchClosed() << std::endl;
+}
 
 START_ROBOT_CLASS(Robot)
