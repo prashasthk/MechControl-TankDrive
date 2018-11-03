@@ -7,24 +7,27 @@
 
 #pragma once
 
-#include "WPILib.h"
-#include "ctre/Phoenix.h"
-#include "RobotMap.h"
+#include <Utilities/WVPIDController.h>
+#include "OI.h"
+#include "Subsystems/Lift.h"
+#include "../Robot.h"
 
-class Lift : public frc::Subsystem {
+class AutoMoveLift : public frc::Command {
 private:
-	TalonSRX*lift;
+double setpoint;
+double liftKp = 0.3;
+double liftKi = 0;
+double liftKd = 0;
+double power;
 
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
+WVPIDController * liftPID;
+
 public:
-	Lift();
-	~Lift();
-	TalonSRX * getLiftMotor();
-	void InitDefaultCommand() override;
-	void liftMove(double power);
-	double getHeight();
-	double getPosition();
-	void resetEncoder();
+	AutoMoveLift();
+	void Initialize() override;
+	void Execute() override;
+	bool IsFinished() override;
+	void End() override;
+	void Interrupted() override;
 };
 

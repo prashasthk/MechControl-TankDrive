@@ -13,6 +13,7 @@
 
 
 class MoveLift : public frc::Command {
+
 public:
 	MoveLift();
 	void Initialize() override;

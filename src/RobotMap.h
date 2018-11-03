@@ -19,16 +19,17 @@
 // constexpr int kLeftMotor = 1;
 // constexpr int kRightMotor = 2;
 
+
 // If you are using multiple modules, make sure to define both the port
 // number and the module. For example you with a rangefinder:
 // constexpr int kRangeFinderPort = 1;
 // constexpr int kRangeFinderModule = 1;
-constexpr int joystickleftPort = 0;
-constexpr int joystickrightPort = 0;
-constexpr int LEFTMOTOR = 0;
-constexpr int RIGHTMOTOR = 0;
-constexpr int joystickliftPort = 0;
-constexpr int liftPort = 0;
-constexpr int LEFT_BUTTON_PORT = 0;
-constexpr int RESET_LIFT_PORT = 0;
+constexpr int joystickleftPort = -1;
+constexpr int joystickrightPort = -1;
+constexpr int LEFTMOTOR = 2;
+constexpr int RIGHTMOTOR = 3;
+constexpr int joystickliftPort = 1;
+constexpr int liftMotorPort = 4;
+constexpr int LEFT_BUTTON_PORT = 7;
+constexpr int RESET_LIFT_PORT = 1;
 

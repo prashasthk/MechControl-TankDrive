@@ -5,40 +5,44 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/MoveLift.h>
-#include <iostream>
+#include "AutoMoveLift.h"
 
-MoveLift::MoveLift() {
+AutoMoveLift::AutoMoveLift() :
+liftPID(new WVPIDController(liftKp, liftKi, liftKd, setpoint, false)){
 	Requires(Robot::lift);
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 }
 
 // Called just before this Command runs the first time
-void MoveLift::Initialize() {
-
+void AutoMoveLift::Initialize() {
+Robot::lift->resetEncoder();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void MoveLift::Execute() {
-double liftValue = Robot::m_oi->getLiftStick()->GetY();
-Robot::lift->liftMove(liftValue);
-std::cout << Robot::lift->getHeight() << std::endl;
+void AutoMoveLift::Execute() {
+power = liftPID->Tick(Robot::lift->getHeight());
+Robot::lift->liftMove(0.15 + power);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool MoveLift::IsFinished() {
-	return false;
+bool AutoMoveLift::IsFinished() {
+	if (fabs(liftPID->GetError()) < 0.05) {
+			return true;
+		}
+		else if (Robot::lift->getLiftMotor()->GetSensorCollection().IsFwdLimitSwitchClosed()) {
+			return true;
+		}
 
 }
 
 // Called once after isFinished returns true
-void MoveLift::End() {
-
+void AutoMoveLift::End() {
+	Robot::lift->liftMove(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void MoveLift::Interrupted() {
+void AutoMoveLift::Interrupted() {
 
 }
